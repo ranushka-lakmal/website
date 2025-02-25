@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranushka Sankalpa - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7F5AF0;
+            --secondary-color: #2CB67D;
+            --bg-color: #16161A;
+            --text-color: #FFFFFE;
+            --nav-bg: rgba(22, 22, 26, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body.light-mode {
+            --bg-color: #FFFFFE;
+            --text-color: #16161A;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(22, 22, 26, 0.05);
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.5s ease, color 0.3s ease;
+        }
+
+        /* Animated Navigation */
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+            position: relative;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 30px var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        /* 3D Content Cards */
+        .card-3d {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-3d:hover {
+            transform: rotateX(5deg) rotateY(5deg) translateZ(20px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Section Titles */
+        .section-title {
+            color: var(--primary-color);
+            margin: 50px 0;
+            text-align: center;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">RS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section id="home" class="profile-section">
+        <div class="container">
+            <img src="./assets/images/pofile.png" class="profile-photo" alt="Ranushka Sankalpa">
+            <h1>Ranushka Sankalpa</h1>
+            <p class="lead">Software Engineer | Full-Stack Developer</p>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container py-5">
+        <h2 class="section-title">Education</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-3d">
+                    <div class="card-body">
+                        <i class="fas fa-graduation-cap fa-3x mb-3" style="color: var(--primary-color)"></i>
+                        <h3>MSc Advanced Software Engineering</h3>
+                        <p>University of Westminster</p>
+                        <p class="text-muted">2022-2024</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-3d">
+                    <div class="card-body">
+                        <i class="fas fa-university fa-3x mb-3" style="color: var(--primary-color)"></i>
+                        <h3>BSc Information Technology</h3>
+                        <p>Sri Lanka Institute of IT</p>
+                        <p class="text-muted">2016-2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container py-5">
+        <h2 class="section-title">Experience</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-3d">
+                    <div class="card-body">
+                        <i class="fas fa-briefcase fa-3x mb-3" style="color: var(--primary-color)"></i>
+                        <h3>Software Engineer</h3>
+                        <p>Hitachi Digital Payments</p>
+                        <p class="text-muted">2022-2024</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-3d">
+                    <div class="card-body">
+                        <i class="fas fa-laptop-code fa-3x mb-3" style="color: var(--primary-color)"></i>
+                        <h3>Full Stack Developer</h3>
+                        <p>Freelance</p>
+                        <p class="text-muted">2021-Present</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container py-5">
+        <h2 class="section-title">Projects</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card-3d h-100">
+                    <div class="card-body">
+                        <i class="fas fa-code fa-3x mb-3" style="color: var(--primary-color)"></i>
+                        <h4>Payment Gateway System</h4>
+                        <p>Java, Spring Boot, Angular</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-3d h-100">
+                    <div class="card-body">
+                        <i class="fas fa-shopping-cart fa-3x mb-3" style="color: var(--primary-color)"></i>
+                        <h4>E-commerce Platform</h4>
+                        <p>Node.js, React, MongoDB</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.querySelector('i').classList.toggle('fa-moon');
+            themeToggle.querySelector('i').classList.toggle('fa-sun');
+        });
+
+        // Smooth Scroll and Active Nav Link
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    behavior: 'smooth',
+                    top: target.offsetTop - 70
+                });
+            });
+        });
+
+        // Nav Link Active State
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    const id = section.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
