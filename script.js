@@ -16,8 +16,8 @@ class Particle {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1;
-        this.velocityX = (Math.random() - 0.5) * 1.5; // Increased speed
-        this.velocityY = (Math.random() - 0.5) * 1.5; // Increased speed
+        this.velocityX = (Math.random() - 0.4) * 0.8; // Increased speed
+        this.velocityY = (Math.random() - 0.4) * 0.8; // Increased speed
         this.density = Math.random() * 10 + 5;
     }
 
@@ -37,11 +37,11 @@ class Particle {
 
         // Boundary bounce with momentum preservation
         if (this.x < 0 || this.x > canvas.width) {
-            this.velocityX *= -0.9; // Bounce with slight energy loss
+            this.velocityX *= -0.5; // Bounce with slight energy loss
             this.x = this.x < 0 ? 0 : canvas.width;
         }
         if (this.y < 0 || this.y > canvas.height) {
-            this.velocityY *= -0.9; // Bounce with slight energy loss
+            this.velocityY *= -0.5; // Bounce with slight energy loss
             this.y = this.y < 0 ? 0 : canvas.height;
         }
 
@@ -63,7 +63,7 @@ class Particle {
 // Initialize particles
 function init() {
     particles = [];
-    for (let i = 0; i < 150; i++) { // Increased particle count
+    for (let i = 0; i < 100; i++) { // Increased particle count
         particles.push(new Particle());
     }
 }
