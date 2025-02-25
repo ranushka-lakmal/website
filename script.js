@@ -1,4 +1,4 @@
-// Particle Animation
+// Particle Animation with Automatic Movement
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -11,14 +11,13 @@ function initCanvas() {
 }
 initCanvas();
 
-// Particle Class
 class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1;
-        this.baseX = this.x;
-        this.baseY = this.y;
+        this.velocityX = (Math.random() - 0.5) * 1.5; // Increased speed
+        this.velocityY = (Math.random() - 0.5) * 1.5; // Increased speed
         this.density = Math.random() * 10 + 5;
     }
 
@@ -32,40 +31,45 @@ class Particle {
     }
 
     update() {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const forceDirectionX = dx / distance;
-        const forceDirectionY = dy / distance;
-        const maxDistance = mouse.radius;
-        const force = (maxDistance - distance) / maxDistance;
-        const directionX = forceDirectionX * force * this.density;
-        const directionY = forceDirectionY * force * this.density;
+        // Continuous automatic movement
+        this.x += this.velocityX;
+        this.y += this.velocityY;
 
-        if (distance < mouse.radius) {
-            this.x -= directionX;
-            this.y -= directionY;
-        } else {
-            if (this.x !== this.baseX) {
-                this.x -= (this.x - this.baseX) / 10;
-            }
-            if (this.y !== this.baseY) {
-                this.y -= (this.y - this.baseY) / 10;
+        // Boundary bounce with momentum preservation
+        if (this.x < 0 || this.x > canvas.width) {
+            this.velocityX *= -0.9; // Bounce with slight energy loss
+            this.x = this.x < 0 ? 0 : canvas.width;
+        }
+        if (this.y < 0 || this.y > canvas.height) {
+            this.velocityY *= -0.9; // Bounce with slight energy loss
+            this.y = this.y < 0 ? 0 : canvas.height;
+        }
+
+        // Mouse interaction
+        if (mouse.x && mouse.y) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+                const force = (mouse.radius - distance) / mouse.radius;
+                this.velocityX -= (dx / distance) * force * 0.5;
+                this.velocityY -= (dy / distance) * force * 0.5;
             }
         }
     }
 }
 
-// Create Particles
+// Initialize particles
 function init() {
     particles = [];
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 150; i++) { // Increased particle count
         particles.push(new Particle());
     }
 }
 init();
 
-// Animation Loop
+// Animation loop
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(particle => {

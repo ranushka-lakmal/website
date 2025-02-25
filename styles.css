@@ -113,7 +113,7 @@ body.light-mode {
 
 .profile-subtitle {
     font-size: 1.2rem;
-    color: var(--secondary);
+    font-weight: 500;
 }
 
 /* Section Styling */
