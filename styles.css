@@ -15,6 +15,44 @@ body {
     transition: all 0.5s ease;
 }
 
+.profile-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 2rem;
+}
+
+/* Profile Image Fix */
+.profile-image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 30px var(--primary);
+    object-fit: cover;
+}
+
+/* Ensure skills grid doesn't overlap */
+.skills-container {
+    margin-top: 2rem;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove any conflicting transforms */
+.profile-section {
+    position: relative;
+    z-index: 2;
+}
+
 /* Profile Section Enhancements */
 .profile-content {
     max-width: 800px;
@@ -22,14 +60,20 @@ body {
 }
 
 .profile-bio {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--light);
     font-size: 1.1rem;
     line-height: 1.8;
     margin: 1.5rem auto;
     max-width: 600px;
+    transition: color 0.3s ease;
+}
+
+body.light-mode .profile-bio {
+    color: rgba(var(--dark-rgb), 0.9);
 }
 
 .social-links {
+    color: var(--light);
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -71,18 +115,19 @@ body {
 
 /* For light mode */
 body.light-mode .social-link {
-    background: rgba(22, 22, 26, 0.05);
-    border: 1px solid rgba(22, 22, 26, 0.1);
+    background: rgba(221, 7, 7, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     color: var(--dark);
+    -webkit-text-fill-color: #020247;
 }
 
 body.light-mode .social-link:hover {
-    background: rgba(44, 182, 125, 0.1);
+    background: rgba(255, 0, 0, 0.1);
 }
 
 body.light-mode {
     --dark: #FFFFFE;
-    --light: #16161A;
+    --light: #020247;
     --nav-bg: rgba(255, 255, 255, 0.95);
     --card-bg: rgba(22, 22, 26, 0.05);
 }
