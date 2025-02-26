@@ -113,6 +113,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Skill card interactions
+document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.1)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.background = 'rgba(255, 255, 255, 0.1)';
+    });
+});
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+document.querySelectorAll('.skill-category').forEach(el => observer.observe(el));
+
 // Mouse Tracking
 window.addEventListener('mousemove', e => {
     mouse.x = e.x;
@@ -124,3 +147,4 @@ window.addEventListener('resize', () => {
     initCanvas();
     init();
 });
+
