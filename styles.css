@@ -31,14 +31,7 @@ body {
     margin: 0 auto 2rem;
 }
 
-.profile-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 3px solid var(--primary);
-    box-shadow: 0 0 30px var(--primary);
-    object-fit: cover;
-}
+ 
 
 /* Ensure skills grid doesn't overlap */
 .skills-container {
@@ -371,7 +364,7 @@ body.light-mode {
     border: 2px solid var(--primary);
     box-shadow: 0 0 50px var(--primary);
     margin-bottom: 1rem;
-    margin-top: 100%;
+    margin-top: 150px;
     transition: transform 0.3s ease;
 }
 
@@ -714,34 +707,41 @@ body.light-mode {
     }
 }
 
-.cv-download-container {
+/* CV Download Section Styles */
+.cv-section {
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.cv-download-wrapper {
     text-align: center;
     margin: 2rem auto;
     max-width: 600px;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
 
 .cv-download-btn {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.2rem 2.5rem;
+    padding: 1.2rem 3rem;
     border-radius: 50px;
-    background: rgba(127, 90, 240, 0.1);
-    border: 2px solid var(--primary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     color: var(--light);
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(127, 90, 240, 0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .cv-download-btn i {
     font-size: 1.4rem;
-    color: var(--secondary);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .cv-download-btn span {
@@ -749,16 +749,31 @@ body.light-mode {
     z-index: 1;
 }
 
+.hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: 0.5s;
+}
+
 /* Hover Effects */
 .cv-download-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(127, 90, 240, 0.3);
-    background: rgba(127, 90, 240, 0.15);
+    box-shadow: 0 8px 25px rgba(127, 90, 240, 0.4);
+}
+
+.cv-download-btn:hover .hover-effect {
+    left: 100%;
 }
 
 .cv-download-btn:hover i {
-    transform: scale(1.1);
-    color: var(--light);
+    transform: scale(1.2);
 }
 
 /* Mobile Responsive */
@@ -766,12 +781,7 @@ body.light-mode {
     .cv-download-btn {
         width: 100%;
         justify-content: center;
-        padding: 1.5rem;
-        border-radius: 25px;
-    }
-    
-    .cv-download-btn i {
-        font-size: 1.6rem;
+        padding: 1.5rem 2rem;
     }
     
     .cv-download-btn span {
@@ -781,12 +791,12 @@ body.light-mode {
 
 @media (max-width: 480px) {
     .cv-download-btn {
-        padding: 1.2rem;
+        padding: 1.2rem 1.5rem;
         gap: 0.8rem;
     }
     
     .cv-download-btn i {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     
     .cv-download-btn span {
@@ -794,3 +804,19 @@ body.light-mode {
     }
 }
 
+/* Animation */
+@keyframes buttonEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cv-download-wrapper {
+    animation: buttonEntrance 0.8s ease both;
+    animation-delay: 0.3s;
+}
