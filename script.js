@@ -92,15 +92,27 @@ themeToggle.addEventListener('click', () => {
 const navbarToggler = document.querySelector('.navbar-toggler');
 const navLinks = document.querySelector('.nav-links');
 
-navbarToggler.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    navbarToggler.innerHTML = navLinks.classList.contains('active') ? 
-        '<i class="fas fa-times"></i>' : 
-        '<i class="fas fa-bars"></i>';
+// Close mobile menu when clicking nav links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        navbarToggler.innerHTML = '<i class="fas fa-bars"></i>';
+    });
 });
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+navbarToggler.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    navbarToggler.innerHTML = navLinks.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+});
+
+
+
+
+// Smooth Scroll (updated)
+document.querySelectorAll('.nav-link').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
@@ -108,8 +120,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             behavior: 'smooth',
             top: target.offsetTop - 70
         });
-        navLinks.classList.remove('active');
-        navbarToggler.innerHTML = '<i class="fas fa-bars"></i>';
     });
 });
 
