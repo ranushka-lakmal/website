@@ -166,46 +166,107 @@ body.light-mode .skill-description {
 body.light-mode .profile-bio {
     color: rgba(var(--dark-rgb), 0.9);
 }
-
 .social-links {
-    color: var(--light);
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .social-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--light);
-    text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
     background: rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.social-link i {
-    font-size: 1.2rem;
-    color: var(--primary);
-    transition: color 0.3s ease;
-}
-
-.social-link span {
+ 
+.social-text {
+    color: var(--light);
     font-weight: 500;
+    transition: transform 0.3s ease;
+ 
 }
 
+/* Platform-specific colors */
+.social-link.linkedin:hover .social-icon { background: #0A66C2; }
+.social-link.github:hover .social-icon { background: #333; }
+.social-link.youtube:hover .social-icon { background: #FF0000; }
+
+/* Hover Effects */
 .social-link:hover {
-    background: rgba(127, 90, 240, 0.1);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(127, 90, 240, 0.2);
+    box-shadow: 0 8px 20px rgba(127, 90, 240, 0.2);
+    background: rgba(127, 90, 240, 0.05);
 }
 
-.social-link:hover i {
-    color: var(--secondary);
+.social-link:hover .social-icon {
+    transform: scale(1.1);
+}
+
+.social-link:hover .social-text {
+    transform: translateX(5px);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .social-links {
+        grid-template-columns: 1fr;
+        max-width: 150px;
+        gap: 1rem;
+    }
+    
+    .social-link {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+    
+    .social-icon {
+        width: 145px;
+        height: 145px;
+    }
+    
+    .social-icon i {
+        font-size: 1.6rem;
+    }
+    
+    .social-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-links {
+        padding: 0;
+    }
+    
+    .social-link {
+        padding: 1rem;
+        gap: 1.2rem;
+    }
+    
+    .social-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .social-icon i {
+        font-size: 1.4rem;
+    }
+    
+    .social-text {
+        font-size: 1rem;
+    }
 }
 
 /* For light mode */
