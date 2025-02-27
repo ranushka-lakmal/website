@@ -364,7 +364,7 @@ body.light-mode {
     border: 2px solid var(--primary);
     box-shadow: 0 0 50px var(--primary);
     margin-bottom: 1rem;
-    margin-top: 110px;
+    margin-top: 115px;
     transition: transform 0.3s ease;
 }
 
