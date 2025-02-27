@@ -371,6 +371,7 @@ body.light-mode {
     border: 3px solid var(--primary);
     box-shadow: 0 0 50px var(--primary);
     margin-bottom: 2rem;
+    margin-top: 100px;
     transition: transform 0.3s ease;
 }
 
@@ -790,5 +791,79 @@ body.light-mode {
     
     .cv-download-btn span {
         font-size: 1rem;
+    }
+}
+
+/* Location Styling */
+.location-container {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.location-marker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    background: rgba(127, 90, 240, 0.1);
+    backdrop-filter: blur(5px);
+    animation: fadeInUp 1s ease both;
+}
+
+.location-marker i {
+    color: var(--primary);
+    font-size: 1.4rem;
+    animation: pulse 2s infinite;
+}
+
+.location-text {
+    color: var(--light);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effects */
+.location-marker:hover {
+    background: rgba(127, 90, 240, 0.15);
+    cursor: pointer;
+}
+
+.location-marker:hover i {
+    animation: none;
+    transform: scale(1.2);
+    color: var(--secondary);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .location-marker {
+        padding: 0.6rem 1.2rem;
+    }
+    
+    .location-marker i {
+        font-size: 1.2rem;
+    }
+    
+    .location-text {
+        font-size: 0.9rem;
     }
 }
